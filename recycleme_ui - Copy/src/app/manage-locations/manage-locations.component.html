@@ -1,0 +1,11 @@
+<div class="manage-locations-container">
+  <mat-card>
+    <mat-card-title>Manage Recycling Locations</mat-card-title>
+    <button mat-raised-button color="primary" (click)="addLocation()">Add New Location</button>
+    <div *ngFor="let location of locations">
+      <mat-list-item>{{ location.name }}</mat-list-item>
+      <button mat-raised-button color="accent" (click)="editLocation(location.id)">Edit</button>
+      <button mat-raised-button color="warn" (click)="deleteLocation(location.id)">Delete</button>
+    </div>
+  </mat-card>
+</div>
