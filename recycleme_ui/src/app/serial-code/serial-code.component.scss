@@ -2,16 +2,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  flex-direction: column;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 mat-card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 800px;
+  width: 400px;
   margin: 10px;
   padding: 10px;
+}
+
+#info {
+  height: 50vh;
 }
 
 form {
@@ -24,4 +31,8 @@ form {
 
 button {
   margin: 10px;
+}
+
+img {
+  width: 30%;
 }

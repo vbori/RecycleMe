@@ -14,7 +14,8 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent, canActivate: [AuthActivatorService] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [UserActivatorService] },
   { path: 'serial-code', component: SerialCodeComponent, canActivate: [UserActivatorService] },
-  { path: 'barcode-scanner', component: BarcodeScannerComponent, canActivate: [UserActivatorService] }
+  { path: 'barcode-scanner', component: BarcodeScannerComponent, canActivate: [UserActivatorService] },
+  { path: '**', redirectTo: '/login'}
 ];
 
 @NgModule({

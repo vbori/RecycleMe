@@ -1,20 +1,26 @@
-<div class="serial-code-container">
-  <mat-card>
-    <mat-card-title>Enter Serial Code</mat-card-title>
-    <form (ngSubmit)="onSubmit()">
-      <mat-form-field appearance="fill">
-        <mat-label>Serial Code</mat-label>
-        <input matInput type="text" [(ngModel)]="serialCode" name="serialCode" required>
-      </mat-form-field>
-      <div class="buttons">
-        <button mat-raised-button color="primary" type="submit">Submit</button>
-        <button mat-raised-button color="primary" [routerLink]="['../dashboard']">Cancel</button>
-      </div>
-      <mat-card-content *ngIf="instructions">
+<div class="page-container">
+  <div class="serial-code-container">
+    <mat-card>
+      <mat-card-title>Enter Serial Code</mat-card-title>
+      <form (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill">
+          <mat-label>Serial Code</mat-label>
+          <input matInput type="text" [(ngModel)]="serialCode" name="serialCode" required>
+        </mat-form-field>
+        <div class="buttons">
+          <button mat-raised-button color="primary" type="submit">Submit</button>
+          <button mat-raised-button color="primary" [routerLink]="['../dashboard']">Go Back</button>
+        </div>
+        <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
+      </form>
+    </mat-card>
+    <mat-card id="info">
+      <mat-card-title>Product Information</mat-card-title>
+      <mat-card-content *ngIf="instructions" [style.overflow]="'auto'">
         <p><b>{{productName}}</b></p>
         <p>{{ instructions }}</p>
       </mat-card-content>
-      <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
-    </form>
-  </mat-card>
+    </mat-card>
+  </div>
+  <img src="assets/images/undraw_throw_away_re_x60k.svg">
 </div>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SerialService } from '../services/serial.service';
+import { BarcodeService } from '../services/barcode.service';
 
 @Component({
   selector: 'app-serial-code',
@@ -8,20 +8,22 @@ import { SerialService } from '../services/serial.service';
 })
 export class SerialCodeComponent {
   serialCode: string = '';
-  instructions: string = '';
+  DEFAULT = "Enter the product's serial code to get detailed recycling instructions!"
+  instructions = this.DEFAULT;
   productName: string = '';
   errorMessage: string = '';
 
-  constructor(private serialService: SerialService) { }
+  constructor(private barcodeService: BarcodeService) { }
 
   onSubmit() {
-    this.serialService.getInstructions(this.serialCode).subscribe(
+    this.barcodeService.getProductInfo({barcode: this.serialCode}).subscribe(
       response => {
         this.instructions = response.data.product.instructions;
         this.productName = response.data.product.name;
+        this.errorMessage = '';
       },
       error => {
-        this.instructions = '';
+        this.instructions = this.DEFAULT;
         this.productName = '';
         this.errorMessage = error.error.message;
       }

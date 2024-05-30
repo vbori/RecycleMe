@@ -1,9 +1,33 @@
 .barcode-scanner-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 100vh;
 }
+
+.row-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 mat-card {
   width: 400px;
+  padding: 10px;
+  margin: 10px;
+}
+
+#warning {
+  margin: 10px;
+}
+
+#info {
+  height: 85vh;
+}
+
+mat-error{
+  color: red;
+}
+
+img {
+  width: 30%;
 }
