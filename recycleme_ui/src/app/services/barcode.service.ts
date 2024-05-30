@@ -10,8 +10,18 @@ export class BarcodeService {
 
   constructor(private http: HttpClient) { }
 
-  getProductInfo(scanResult: string): Observable<any> {
+  getProductInfo(input: { barcode?: string, file?: File }): Observable<any> {
+    const formData: FormData = new FormData();
+
+    if (input.barcode) {
+      formData.append('barcode', input.barcode);
+    }
+
+    if (input.file) {
+      formData.append('image', input.file, input.file.name);
+    }
+
     const headers = new HttpHeaders().set('Accept', 'application/json');
-    return this.http.post(`${environment.baseUrl}/get-instructions`, { barcode: scanResult }, { headers });
+    return this.http.post(`${environment.baseUrl}/get-instructions`, formData, { headers });
   }
 }

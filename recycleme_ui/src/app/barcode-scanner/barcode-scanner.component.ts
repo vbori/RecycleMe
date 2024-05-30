@@ -11,7 +11,9 @@ export class BarcodeScannerComponent {
   scanResult: string = '';
   errorMessage: string = '';
   qrResultString: string | undefined;
-  instructions = '';
+  selectedFile: File | null = null;
+  DEFAULT = "Scan the product's barcode or upload an image of the barcode to get detailed recycling instructions!"
+  instructions = this.DEFAULT;
   productName = '';
 
   formatsEnabled: BarcodeFormat[] = [
@@ -28,20 +30,46 @@ export class BarcodeScannerComponent {
     BarcodeFormat.AZTEC
   ];
 
-  constructor(private barcodeService: BarcodeService) { }
+  constructor(private barcodeService: BarcodeService) {
+    this.reset();
+  }
 
   onScanSuccess(scanResult: string) {
     this.qrResultString = scanResult;
-    this.barcodeService.getProductInfo(scanResult).subscribe(
+    this.getInfo({barcode: scanResult});
+  }
+
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+
+  uploadPhoto() {
+    if (this.selectedFile) {
+      this.getInfo({file: this.selectedFile});
+    } else {
+      this.errorMessage = 'No file selected. Please select a file.';
+    }
+  }
+
+  getInfo(input: {barcode?: string, file?: File}){
+    this.barcodeService.getProductInfo(input).subscribe(
       response => {
         this.instructions = response.data.product.instructions;
         this.productName = response.data.product.name;
+        this.errorMessage = '';
       },
       error => {
-        this.instructions = '';
+        this.instructions = this.DEFAULT;
         this.productName = '';
         this.errorMessage = error.error.message;
       }
     );
+  }
+
+  reset(){
+    this.instructions = this.DEFAULT;
+    this.errorMessage = '';
+    this.productName = '';
+    this.qrResultString = undefined;
   }
 }

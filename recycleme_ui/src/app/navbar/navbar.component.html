@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <span>RecycleMe</span>
+  <span id="nav-title" [routerLink]="['/dashboard']">RecycleMe</span>
   <span class="spacer"></span>
   <button *ngIf="isLoggedIn" mat-button (click)="logout()">Logout</button>
 </mat-toolbar>
