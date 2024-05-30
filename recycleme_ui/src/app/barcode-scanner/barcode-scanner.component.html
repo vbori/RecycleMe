@@ -1,4 +1,5 @@
 <div class="row-container">
+  <img id="mobile" src="assets/images/undraw_throw_away_re_x60k.svg">
   <div class="barcode-scanner-container">
     <mat-card>
       <mat-card-title>Scan Barcode</mat-card-title>
@@ -9,7 +10,7 @@
           <strong>{{ qrResultString }}</strong>
         </div>
       </section>
-      <div class="row-container">
+      <div class="row-container--buttons">
         <button mat-raised-button color="primary" (click)="reset()">Reset</button>
         <button mat-raised-button color="primary" [routerLink]="['../dashboard']">Go Back</button>
       </div>
@@ -25,14 +26,20 @@
     </mat-card>
     <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
   </div>
-  <div>
+  <div class="barcode-scanner-container">
     <mat-card id="info">
       <mat-card-title>Product Information</mat-card-title>
+      <p *ngIf="!instructions">{{DEFAULT}}</p>
       <mat-card-content *ngIf="instructions" [style.overflow]="'auto'">
-        <p><b>{{productName}}</b></p>
+        <p><b>Name: </b>{{productName}}</p>
+        <p><b>Materials:</b></p>
+        <ul>
+          <li *ngFor="let material of materials">{{ material.name }}</li>
+        </ul>
+        <p><b>Instructions</b></p>
         <p>{{ instructions }}</p>
       </mat-card-content>
     </mat-card>
   </div>
-  <img src="assets/images/undraw_throw_away_re_x60k.svg">
+  <img id="pc" src="assets/images/undraw_throw_away_re_x60k.svg">
 </div>

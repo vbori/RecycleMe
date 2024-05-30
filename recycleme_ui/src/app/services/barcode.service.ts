@@ -24,4 +24,9 @@ export class BarcodeService {
     const headers = new HttpHeaders().set('Accept', 'application/json');
     return this.http.post(`${environment.baseUrl}/get-instructions`, formData, { headers });
   }
+
+  suggestProduct(product: {barcode: string, name: string}): Observable<any>{
+    const headers = new HttpHeaders().set('Accept', 'application/json');
+    return this.http.post(`${environment.baseUrl}/add-suggestions`, product, { headers });
+  }
 }

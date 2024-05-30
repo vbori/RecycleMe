@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BarcodeService } from '../services/barcode.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-serial-code',
@@ -9,22 +10,38 @@ import { BarcodeService } from '../services/barcode.service';
 export class SerialCodeComponent {
   serialCode: string = '';
   DEFAULT = "Enter the product's serial code to get detailed recycling instructions!"
-  instructions = this.DEFAULT;
+  instructions: string | undefined = undefined;
   productName: string = '';
   errorMessage: string = '';
+  materials: any[] = [];
+  showDialog = false;
 
-  constructor(private barcodeService: BarcodeService) { }
+  constructor(private barcodeService: BarcodeService, private toastr: ToastrService) { }
 
   onSubmit() {
     this.barcodeService.getProductInfo({barcode: this.serialCode}).subscribe(
       response => {
         this.instructions = response.data.product.instructions;
         this.productName = response.data.product.name;
+        this.materials = response.data.product.materials;
         this.errorMessage = '';
       },
       error => {
-        this.instructions = this.DEFAULT;
+        this.instructions = undefined;
         this.productName = '';
+        this.materials = [];
+        this.errorMessage = error.error.message;
+      }
+    );
+  }
+
+  suggest(){
+    this.barcodeService.suggestProduct({barcode: this.serialCode, name: this.productName}).subscribe(
+      response => {
+        this.toastr.success('Submitted successfully', 'Success', { progressBar: true, positionClass: 'toast-bottom-right' });
+        this.errorMessage = '';
+      },
+      error => {
         this.errorMessage = error.error.message;
       }
     );
