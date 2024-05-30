@@ -11,6 +11,8 @@ export class BarcodeScannerComponent {
   scanResult: string = '';
   errorMessage: string = '';
   qrResultString: string | undefined;
+  instructions = '';
+  productName = '';
 
   formatsEnabled: BarcodeFormat[] = [
     BarcodeFormat.CODE_128,
@@ -29,14 +31,16 @@ export class BarcodeScannerComponent {
   constructor(private barcodeService: BarcodeService) { }
 
   onScanSuccess(scanResult: string) {
-    console.log('SCANNED', scanResult)
     this.qrResultString = scanResult;
     this.barcodeService.getProductInfo(scanResult).subscribe(
       response => {
-        this.scanResult = response.productInfo;
+        this.instructions = response.data.product.instructions;
+        this.productName = response.data.product.name;
       },
       error => {
-        this.errorMessage = 'Product not found. Please try again.';
+        this.instructions = '';
+        this.productName = '';
+        this.errorMessage = error.error.message;
       }
     );
   }

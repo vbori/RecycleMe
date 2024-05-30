@@ -4,11 +4,14 @@
     <zxing-scanner (scanSuccess)="onScanSuccess($event)" [formats]="formatsEnabled" [tryHarder]=true></zxing-scanner>
     <section class="results" *ngIf="qrResultString">
       <div>
-        <small>Result</small>
+        <small>Detected barcode: </small>
         <strong>{{ qrResultString }}</strong>
       </div>
     </section>
-    <mat-card-content *ngIf="scanResult">{{ scanResult }}</mat-card-content>
+    <mat-card-content *ngIf="instructions">
+      <p><b>{{productName}}</b></p>
+      <p>{{ instructions }}</p>
+    </mat-card-content>
     <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
     <button mat-raised-button color="primary" [routerLink]="['../dashboard']">Cancel</button>
   </mat-card>

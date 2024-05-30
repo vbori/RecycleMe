@@ -10,7 +10,10 @@
         <button mat-raised-button color="primary" type="submit">Submit</button>
         <button mat-raised-button color="primary" [routerLink]="['../dashboard']">Cancel</button>
       </div>
-      <mat-card-content *ngIf="instructions">{{ instructions }}</mat-card-content>
+      <mat-card-content *ngIf="instructions">
+        <p><b>{{productName}}</b></p>
+        <p>{{ instructions }}</p>
+      </mat-card-content>
       <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
     </form>
   </mat-card>
