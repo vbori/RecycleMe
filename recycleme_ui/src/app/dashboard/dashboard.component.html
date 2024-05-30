@@ -1,10 +1,15 @@
 <div class="dashboard-container">
   <mat-card>
+    <mat-card-title>Welcome to RecycleMe!</mat-card-title>
     <mat-card-content>
+      <p>We're thrilled to have you join our community of environmentally conscious individuals. At RecycleMe, we are dedicated to making recycling easy, efficient, and accessible for everyone. Our goal is to empower you with the knowledge and tools you need to make a positive impact on the environment.</p>
+      <p>Here, you can easily find detailed instructions on how to recycle various items. Whether you're an expert recycler or just starting out, RecycleMe is here to guide you every step of the way.</p>
+      <p>Thank you for being part of the solution. Together, we can create a cleaner, greener future. Happy recycling!</p>
       <div class="action-container">
         <button [routerLink]="['../serial-code']" mat-raised-button color="primary">Manually Search for Product</button>
         <button  [routerLink]="['../barcode-scanner']" mat-raised-button color="primary">Scan Barcode</button>
       </div>
     </mat-card-content>
   </mat-card>
+  <img src="assets/images/undraw_nature_m5ll.svg"/>
 </div>

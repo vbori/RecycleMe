@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  baseUrl: 'https://955d-157-181-112-57.ngrok-free.app/api',
+  baseUrl: 'https://16.16.198.130.sslip.io/api',
   frontendBaseUrl: 'http://localhost:4200'
 };

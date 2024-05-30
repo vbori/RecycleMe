@@ -26,6 +26,8 @@ export class NavbarComponent {
         },
         error => {
           console.error('Logout failed', error);
+          localStorage.removeItem('authToken');
+          this.router.navigate(['/login']);
         }
       );
     }

@@ -42,11 +42,8 @@ export class AuthService {
     const headers = new HttpHeaders()
       .set('Accept', 'application/json')
       .set('Authorization', `Bearer ${token}`);
-    return this.http.post(`${environment.baseUrl}/logout`, {}, { headers }).pipe(
-      tap((token: any) => {
-        this._isLoggedIn$.next(false);
-      })
-    );
+    this._isLoggedIn$.next(false)
+    return this.http.post(`${environment.baseUrl}/logout`, {}, { headers });
   }
 
   getUser(token: string): Observable<any> {

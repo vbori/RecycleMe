@@ -9,6 +9,7 @@ import { SerialService } from '../services/serial.service';
 export class SerialCodeComponent {
   serialCode: string = '';
   instructions: string = '';
+  productName: string = '';
   errorMessage: string = '';
 
   constructor(private serialService: SerialService) { }
@@ -16,10 +17,13 @@ export class SerialCodeComponent {
   onSubmit() {
     this.serialService.getInstructions(this.serialCode).subscribe(
       response => {
-        this.instructions = response.instructions;
+        this.instructions = response.data.product.instructions;
+        this.productName = response.data.product.name;
       },
       error => {
-        this.errorMessage = 'Invalid serial code. Please try again.';
+        this.instructions = '';
+        this.productName = '';
+        this.errorMessage = error.error.message;
       }
     );
   }

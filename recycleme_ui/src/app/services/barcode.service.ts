@@ -12,6 +12,6 @@ export class BarcodeService {
 
   getProductInfo(scanResult: string): Observable<any> {
     const headers = new HttpHeaders().set('Accept', 'application/json');
-    return this.http.post(`${environment.baseUrl}/get-product-info`, { scanResult }, { headers });
+    return this.http.post(`${environment.baseUrl}/get-instructions`, { barcode: scanResult }, { headers });
   }
 }
