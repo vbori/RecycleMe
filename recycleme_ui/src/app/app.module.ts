@@ -21,7 +21,6 @@ import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SerialCodeComponent } from './serial-code/serial-code.component';
 import { BarcodeScannerComponent } from './barcode-scanner/barcode-scanner.component';
-import { ManageLocationsComponent } from './manage-locations/manage-locations.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 
@@ -33,7 +32,6 @@ import { NavbarComponent } from './navbar/navbar.component';
     DashboardComponent,
     SerialCodeComponent,
     BarcodeScannerComponent,
-    ManageLocationsComponent,
     NavbarComponent
   ],
   imports: [
