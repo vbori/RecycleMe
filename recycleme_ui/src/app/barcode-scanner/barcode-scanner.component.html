@@ -1,7 +1,7 @@
 <div class="barcode-scanner-container">
   <mat-card>
     <mat-card-title>Scan Barcode</mat-card-title>
-    <zxing-scanner (scanSuccess)="onScanSuccess($event)" [formats]="formatsEnabled" [torch]= true [tryHarder]=true></zxing-scanner>
+    <zxing-scanner (scanSuccess)="onScanSuccess($event)" [formats]="formatsEnabled" [tryHarder]=true></zxing-scanner>
     <section class="results" *ngIf="qrResultString">
       <div>
         <small>Result</small>

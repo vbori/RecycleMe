@@ -16,9 +16,10 @@ export class SerialCodeComponent {
   onSubmit() {
     this.serialService.getInstructions(this.serialCode).subscribe(
       response => {
-        this.instructions = response.instructions;
+        this.instructions = response.data.product.instructions;
       },
       error => {
+        this.instructions = ''
         this.errorMessage = 'Invalid serial code. Please try again.';
       }
     );

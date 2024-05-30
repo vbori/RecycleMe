@@ -1,8 +1,9 @@
 .dashboard-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  height: 100vh;
+  flex-direction: row;
+  margin: 10px;
 }
 
 .action-container {
@@ -14,8 +15,13 @@
 
 mat-card {
   width: 400px;
+  padding: 10px;
 }
 
 button {
   margin: 10px;
+}
+
+img {
+  height: 600px;
 }

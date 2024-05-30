@@ -12,6 +12,6 @@ export class SerialService {
 
   getInstructions(serialCode: string): Observable<any> {
     const headers = new HttpHeaders().set('Accept', 'application/json');
-    return this.http.post(`${environment.baseUrl}/get-instructions`, { serialCode }, { headers });
+    return this.http.post(`${environment.baseUrl}/get-instructions`, { barcode: serialCode }, { headers });
   }
 }
