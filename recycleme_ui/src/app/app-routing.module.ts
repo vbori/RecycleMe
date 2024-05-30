@@ -5,16 +5,16 @@ import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SerialCodeComponent } from './serial-code/serial-code.component';
 import { BarcodeScannerComponent } from './barcode-scanner/barcode-scanner.component';
-import { ManageLocationsComponent } from './manage-locations/manage-locations.component';
+import { AuthActivatorService } from './services/route-guards/auth-activator.service';
+import { UserActivatorService } from './services/route-guards/user-activator.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'serial-code', component: SerialCodeComponent },
-  { path: 'barcode-scanner', component: BarcodeScannerComponent },
-  { path: 'manage-locations', component: ManageLocationsComponent },
+  { path: 'login', component: LoginComponent, canActivate: [AuthActivatorService] },
+  { path: 'signup', component: SignupComponent, canActivate: [AuthActivatorService] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [UserActivatorService] },
+  { path: 'serial-code', component: SerialCodeComponent, canActivate: [UserActivatorService] },
+  { path: 'barcode-scanner', component: BarcodeScannerComponent, canActivate: [UserActivatorService] }
 ];
 
 @NgModule({
