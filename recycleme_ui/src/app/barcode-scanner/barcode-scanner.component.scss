@@ -8,6 +8,40 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  &--buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .row-container {
+    flex-direction: column;
+    align-items: center;
+
+    &--buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+    }
+  }
+
+  .barcode-scanner-container {
+    width: 100%;
+    justify-content: center;
+  }
+
+  img#mobile {
+    display: flex !important;
+    width: 50% !important;
+    margin: 10px;
+  }
+  img#pc {
+    display: none !important;
+  }
 }
 
 mat-card {
@@ -30,4 +64,16 @@ mat-error{
 
 img {
   width: 30%;
+}
+
+img#mobile {
+  display: none;
+}
+
+img#pc {
+  display: flex;
+}
+
+button {
+  margin: 10px 0;
 }

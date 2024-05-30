@@ -11,16 +11,42 @@
           <button mat-raised-button color="primary" type="submit">Submit</button>
           <button mat-raised-button color="primary" [routerLink]="['../dashboard']">Go Back</button>
         </div>
-        <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
+        <div *ngIf="errorMessage">
+          <mat-error>{{ errorMessage }}</mat-error>
+          <button mat-raised-button color="primary" (click)="showDialog.showModal()">Suggest Product</button>
+        </div>
       </form>
     </mat-card>
     <mat-card id="info">
       <mat-card-title>Product Information</mat-card-title>
+      <p *ngIf="!instructions">{{DEFAULT}}</p>
       <mat-card-content *ngIf="instructions" [style.overflow]="'auto'">
-        <p><b>{{productName}}</b></p>
+        <p><b>Name: </b>{{productName}}</p>
+        <p><b>Materials:</b></p>
+        <ul>
+          <li *ngFor="let material of materials">{{ material.name }}</li>
+        </ul>
+        <p><b>Instructions</b></p>
         <p>{{ instructions }}</p>
       </mat-card-content>
     </mat-card>
   </div>
   <img src="assets/images/undraw_throw_away_re_x60k.svg">
 </div>
+<dialog #showDialog>
+  <mat-card id="diag-card" *ngIf="showDialog.open">
+    <mat-card-title>Suggest Product</mat-card-title>
+    <mat-card-content>
+      <p>Thank you for your contribution!</p>
+      <p>Please provide the name of the detected product so that our admins can review it and add it to our database.</p>
+      <mat-form-field>
+        <mat-label>Product Name</mat-label>
+        <input matInput [(ngModel)]="productName" required/>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button color="primary" (click)="showDialog.close()">Cancel</button>
+        <button mat-raised-button color="accent" (click)="showDialog.close(); suggest();">Submit</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</dialog>

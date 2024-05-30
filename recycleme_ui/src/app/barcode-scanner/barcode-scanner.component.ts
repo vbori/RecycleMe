@@ -13,8 +13,9 @@ export class BarcodeScannerComponent {
   qrResultString: string | undefined;
   selectedFile: File | null = null;
   DEFAULT = "Scan the product's barcode or upload an image of the barcode to get detailed recycling instructions!"
-  instructions = this.DEFAULT;
+  instructions: string | undefined = undefined;
   productName = '';
+  materials: any[] = []
 
   formatsEnabled: BarcodeFormat[] = [
     BarcodeFormat.CODE_128,
@@ -56,20 +57,23 @@ export class BarcodeScannerComponent {
       response => {
         this.instructions = response.data.product.instructions;
         this.productName = response.data.product.name;
+        this.materials = response.data.product.materials;
         this.errorMessage = '';
       },
       error => {
-        this.instructions = this.DEFAULT;
+        this.instructions = undefined;
         this.productName = '';
+        this.materials = [];
         this.errorMessage = error.error.message;
       }
     );
   }
 
   reset(){
-    this.instructions = this.DEFAULT;
+    this.instructions = undefined;
     this.errorMessage = '';
     this.productName = '';
     this.qrResultString = undefined;
+    this.materials = []
   }
 }

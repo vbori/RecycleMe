@@ -6,6 +6,23 @@
   margin: 10px;
 }
 
+@media only screen and (max-width: 600px) {
+  .dashboard-container {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  mat-card {
+    width: 95% !important;
+  }
+
+  img {
+    width: 50%;
+    height: auto !important;
+    margin: 10px;
+  }
+}
+
 .action-container {
   display: flex;
   justify-content: center;
@@ -24,4 +41,8 @@ button {
 
 img {
   height: 600px;
+}
+
+mat-card {
+  text-align: center;
 }
