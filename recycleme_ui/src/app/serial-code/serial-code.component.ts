@@ -25,12 +25,14 @@ export class SerialCodeComponent {
         this.productName = response.data.product.name;
         this.materials = response.data.product.materials;
         this.errorMessage = '';
+        this.toastr.success('Find details under Product Information', 'Product found', { progressBar: true, positionClass: 'toast-bottom-right' });
       },
       error => {
         this.instructions = undefined;
         this.productName = '';
         this.materials = [];
         this.errorMessage = error.error.message;
+        this.toastr.error(this.errorMessage, 'Error', { progressBar: true, positionClass: 'toast-bottom-right' });
       }
     );
   }
@@ -40,6 +42,7 @@ export class SerialCodeComponent {
       response => {
         this.toastr.success('Submitted successfully', 'Success', { progressBar: true, positionClass: 'toast-bottom-right' });
         this.errorMessage = '';
+        this.productName = '';
       },
       error => {
         this.errorMessage = error.error.message;

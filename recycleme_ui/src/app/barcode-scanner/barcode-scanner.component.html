@@ -15,6 +15,10 @@
         <button mat-raised-button color="primary" [routerLink]="['../dashboard']">Go Back</button>
       </div>
     </mat-card>
+    <div *ngIf="errorMessage" class="barcode-scanner-container">
+      <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
+      <button *ngIf= "serialCode" mat-raised-button color="primary" (click)="showDialog.showModal()">Suggest Product</button>
+    </div>
     <mat-card>
       <mat-card-title>Upload Photo</mat-card-title>
       <mat-card-content id="warning">
@@ -24,7 +28,7 @@
       <input type="file" (change)="onFileSelected($event)" accept="image/*" />
       <button mat-raised-button color="primary" (click)="uploadPhoto()">Upload Photo</button>
     </mat-card>
-    <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
+
   </div>
   <div class="barcode-scanner-container">
     <mat-card id="info">
@@ -43,3 +47,20 @@
   </div>
   <img id="pc" src="assets/images/undraw_throw_away_re_x60k.svg">
 </div>
+<dialog #showDialog>
+  <mat-card id="diag-card" *ngIf="showDialog.open">
+    <mat-card-title>Suggest Product</mat-card-title>
+    <mat-card-content>
+      <p>Thank you for your contribution!</p>
+      <p>Please provide the name of the detected product so that our admins can review it and add it to our database.</p>
+      <mat-form-field>
+        <mat-label>Product Name</mat-label>
+        <input matInput [(ngModel)]="productName" required/>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button color="primary" (click)="showDialog.close()">Cancel</button>
+        <button mat-raised-button color="accent" (click)="showDialog.close(); suggest();">Submit</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</dialog>
