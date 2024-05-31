@@ -10,7 +10,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class BarcodeScannerComponent {
   errorMessage: string = '';
-  qrResultString: string | undefined;
   serialCode: string | undefined = undefined;
   allowSuggest = false;
   selectedFile: File | null = null;
@@ -38,7 +37,6 @@ export class BarcodeScannerComponent {
   }
 
   onScanSuccess(scanResult: string) {
-    this.qrResultString = scanResult;
     this.serialCode = scanResult;
     this.getInfo({barcode: scanResult});
   }
@@ -110,7 +108,6 @@ export class BarcodeScannerComponent {
     this.instructions = undefined;
     this.errorMessage = '';
     this.productName = '';
-    this.qrResultString = undefined;
     this.serialCode = undefined;
     this.allowSuggest = false;
     this.materials = []

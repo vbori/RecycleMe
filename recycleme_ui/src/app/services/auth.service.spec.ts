@@ -32,7 +32,7 @@ describe('AuthService', () => {
       expect(response.token).toBe(mockResponse.token);
     });
 
-    const req = httpMock.expectOne('https://4534-185-106-114-121.ngrok-free.app/api/login');
+    const req = httpMock.expectOne(`${environment.baseUrl}/login`);
     expect(req.request.method).toBe('POST');
     req.flush(mockResponse);
   });
@@ -50,7 +50,7 @@ describe('AuthService', () => {
       expect(response.message).toBe(mockResponse.message);
     });
 
-    const req = httpMock.expectOne('https://4534-185-106-114-121.ngrok-free.app/api/register');
+    const req = httpMock.expectOne(`${environment.baseUrl}/register`);
     expect(req.request.method).toBe('POST');
     req.flush(mockResponse);
   });
@@ -63,7 +63,7 @@ describe('AuthService', () => {
       expect(response.message).toBe(mockResponse.message);
     });
 
-    const req = httpMock.expectOne('https://4534-185-106-114-121.ngrok-free.app/api/logout');
+    const req = httpMock.expectOne(`${environment.baseUrl}/logout`);
     expect(req.request.method).toBe('POST');
     req.flush(mockResponse);
   });
@@ -77,7 +77,7 @@ describe('AuthService', () => {
       expect(response.email).toBe(mockResponse.email);
     });
 
-    const req = httpMock.expectOne('https://4534-185-106-114-121.ngrok-free.app/api/get-user');
+    const req = httpMock.expectOne(`${environment.baseUrl}/get-user`);
     expect(req.request.method).toBe('GET');
     req.flush(mockResponse);
   });

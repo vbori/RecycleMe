@@ -5,7 +5,7 @@
       <form (ngSubmit)="onSubmit()">
         <mat-form-field appearance="fill">
           <mat-label>Serial Code</mat-label>
-          <input matInput type="text" [(ngModel)]="serialCode" name="serialCode" required>
+          <input matInput type="number" [(ngModel)]="serialCode" name="serialCode" required>
         </mat-form-field>
         <div class="buttons">
           <button mat-raised-button color="primary" [routerLink]="['../dashboard']">Go Back</button>
