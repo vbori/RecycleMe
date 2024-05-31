@@ -4,10 +4,10 @@
     <mat-card>
       <mat-card-title>Scan Barcode</mat-card-title>
       <zxing-scanner (scanSuccess)="onScanSuccess($event)" [formats]="formatsEnabled" [tryHarder]=true></zxing-scanner>
-      <section class="results" *ngIf="qrResultString">
+      <section class="results" *ngIf="serialCode">
         <div>
           <small>Detected barcode: </small>
-          <strong>{{ qrResultString }}</strong>
+          <strong>{{ serialCode }}</strong>
         </div>
       </section>
       <div class="row-container--buttons">
