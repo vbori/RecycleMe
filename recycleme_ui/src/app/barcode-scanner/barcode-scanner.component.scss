@@ -42,6 +42,10 @@
   img#pc {
     display: none !important;
   }
+
+  mat-card {
+    width: auto !important;
+  }
 }
 
 mat-card {
@@ -75,5 +79,28 @@ img#pc {
 }
 
 button {
-  margin: 10px 0;
+  margin: 10px;
+}
+
+dialog {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border:none;
+  text-align: center;
+  border-radius: 10px;
+  div > button {
+    margin: 10px 10px;
+  }
+  padding: 0px;
+}
+
+#diag-card{
+  margin: 0px;
+  padding: 5px 10px;
 }

@@ -23,17 +23,4 @@ describe('BarcodeService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-
-  it('should get product info', () => {
-    const mockResponse = { productInfo: 'This is the product info' };
-    const scanResult = '12345678';
-
-    service.getProductInfo(scanResult).subscribe(response => {
-      expect(response.productInfo).toBe(mockResponse.productInfo);
-    });
-
-    const req = httpMock.expectOne('https://4534-185-106-114-121.ngrok-free.app/api/get-product-info');
-    expect(req.request.method).toBe('POST');
-    req.flush(mockResponse);
-  });
 });

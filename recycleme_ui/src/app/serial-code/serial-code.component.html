@@ -8,8 +8,8 @@
           <input matInput type="text" [(ngModel)]="serialCode" name="serialCode" required>
         </mat-form-field>
         <div class="buttons">
-          <button mat-raised-button color="primary" type="submit">Submit</button>
           <button mat-raised-button color="primary" [routerLink]="['../dashboard']">Go Back</button>
+          <button mat-raised-button color="primary" type="submit">Submit</button>
         </div>
         <div *ngIf="errorMessage">
           <mat-error>{{ errorMessage }}</mat-error>
